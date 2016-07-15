@@ -8,4 +8,6 @@ Here is my entry to the Code-Off! Enjoy!
 ## Distributions
 Available for Mac OS, Linux and Windows. 32 or 64-bit
 
+Downloads available under Releases.
+
 ![Nespresso Lattissima Touch Glam](https://www.nespresso.com/ecom/medias/sys_master/public/10040819187742/M-Main-684x378-1-.jpg)
