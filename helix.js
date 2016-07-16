@@ -1,15 +1,14 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+const express = require('express');
+const bodyParser = require('body-parser');
+const moment = require('moment');
+const twitterApi = require('twitter-node-client');
+const Twitter = require('twitter');
+const jquery = require('jquery');
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var moment = require('moment');
-var twitterApi = require('twitter-node-client');
-var Twitter = require('twitter');
-var jquery = require('jquery');
-
+const app = express();
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -31,21 +30,21 @@ class MyEmitter extends EventEmitter {}
 const myEmitter = new MyEmitter();
 
 function loadTweet(id) {
-  var obj = tweetEngine.getTweet(id);
+  const obj = tweetEngine.getTweet(id);
 
-  var tweetCount = parseInt(obj.favorite_count) + parseInt(obj.retweet_count);
-  var created_at = new Date(obj.created_at);
+  let tweetCount = parseInt(obj.favorite_count) + parseInt(obj.retweet_count);
+  let created_at = new Date(obj.created_at);
 
-  var panel = document.createElement('div');
+  let panel = document.createElement('div');
 
   panel.className = 'panel panel-info';
 
   panel.setAttribute('data-count', tweetCount);
 
-  var header = document.createElement('div');
+  let header = document.createElement('div');
   header.className = 'panel-heading';
 
-  var headerHTML = '<div class="row"><div class="col-sm-3" style="vertical-align: middle;"><img class="profile_pic" src="'+obj.user.profile_image_url+'" border="0"/></div>';
+  let headerHTML = '<div class="row"><div class="col-sm-3" style="vertical-align: middle;"><img class="profile_pic" src="'+obj.user.profile_image_url+'" border="0"/></div>';
   headerHTML = headerHTML + '<div class="col-sm-6" style="vertical-align: middle;"><h5>@'+ obj.user.screen_name +'</h5><small>'+ obj.user.name+'</small></div>';
   if(tweetCount > 0){
     headerHTML = headerHTML + '<div class="col-sm-3" style="vertical-align: middle;" id="' + obj.id + '-counter">';
@@ -60,14 +59,14 @@ function loadTweet(id) {
   headerHTML = headerHTML + '</div>';
   header.innerHTML = headerHTML;
 
-  var body = document.createElement('div');
+  let body = document.createElement('div');
   body.className = 'panel-body';
   body.innerHTML = '<p>' + obj.text + '</p>';
 
-  var footer = document.createElement('div');
+  let footer = document.createElement('div');
   footer.className = 'panel-footer';
 
-  var footerHTML = '<div class="row">';
+  let footerHTML = '<div class="row">';
   footerHTML += '<div class="col-sm-6" align="left">'+moment(created_at).format("YYYY-MM-DD HH:mm")+'</div>';
   footerHTML += '<div class="col-sm-6" align="right"><div class="btn btn-default close">Close</div></div>';
   footerHTML += '</div>';
@@ -78,7 +77,7 @@ function loadTweet(id) {
   panel.appendChild(body);
   panel.appendChild(footer);
 
-  var tweet = document.getElementById('tweet');
+  let tweet = document.getElementById('tweet');
   tweet.innerHTML = '';
   tweet.appendChild(panel);
 
@@ -88,29 +87,29 @@ function loadTweet(id) {
 };
 
 function twitterEngine(twitterApi, config, myEmitter){
-   var hashtags, mentions, dataLoaded;
-   var tweets = [];
+   let hashtags, mentions, dataLoaded;
+   let tweets = [];
 
-   var twitter = new twitterApi.Twitter(config);
+   let twitter = new twitterApi.Twitter(config);
 
-   var error = function (err, response, body) {
+   let error = function (err, response, body) {
        console.log('ERROR [%s]', JSON.stringify(err));
    };
 
    function getItems (data, type) {
        //console.log('Data [%s]', data);
-       var json = JSON.parse(data);
+       let json = JSON.parse(data);
 
-       var items = [];
-       var animate = [];
+       let items = [];
+       let animate = [];
 
        for(k in json.statuses){
-         var obj = json.statuses[k];
-         var created_at = new Date(obj.created_at);
+         let obj = json.statuses[k];
+         let created_at = new Date(obj.created_at);
 
-         var tweetCount = parseInt(obj.favorite_count) + parseInt(obj.retweet_count);
+         let tweetCount = parseInt(obj.favorite_count) + parseInt(obj.retweet_count);
 
-         var element = document.createElement('div');
+         let element = document.createElement('div');
 
          element.className = 'btn btn-primary tweet';
          element.setAttribute('data-count', tweetCount);
@@ -144,7 +143,7 @@ function twitterEngine(twitterApi, config, myEmitter){
 
    function getTweet(id){
      for(i in tweets){
-       var obj = tweets[i];
+       let obj = tweets[i];
        if(obj.id == id){
          return obj;
        }
@@ -164,22 +163,22 @@ tweetEngine.loadData();
 
 myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
-  var items = [];
+  let items = [];
   for(k in hashtags){
-    var item = hashtags[k];
+    let item = hashtags[k];
     items.push(item);
   };
 
   for(k in mentions){
-    var item = mentions[k];
+    let item = mentions[k];
     items.push(item);
   };
 
-  var camera, scene, renderer;
-  var controls;
+  let camera, scene, renderer;
+  let controls;
 
-  var objects = [];
-  var targets = { table: [], sphere: [], helix: [], grid: [] };
+  let objects = [];
+  let targets = { table: [], sphere: [], helix: [], grid: [] };
 
   $('#loader').hide();
   $('#refresh').show();
@@ -188,7 +187,7 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
   animate();
 
   $(".tweet").on( "click", function() {
-    var button = $(this)[0];
+    let button = $(this)[0];
     loadTweet( button.id );
   });
 
@@ -201,10 +200,10 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
     // table
 
-    for ( var i = 0; i < items.length; i += 1 ) {
-      var element = items[i];
+    for ( let i = 0; i < items.length; i += 1 ) {
+      let element = items[i];
 
-      var object = new THREE.CSS3DObject( element );
+      let object = new THREE.CSS3DObject( element );
       object.position.x = Math.random() * 4000 - 2000;
       object.position.y = Math.random() * 4000 - 2000;
       object.position.z = Math.random() * 4000 - 2000;
@@ -217,13 +216,13 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
     // helix
 
-    var vector = new THREE.Vector3();
+    let vector = new THREE.Vector3();
 
-    for ( var i = 0, l = objects.length; i < l; i ++ ) {
+    for ( let i = 0, l = objects.length; i < l; i ++ ) {
 
-      var phi = i * 0.175 + Math.PI;
+      let phi = i * 0.175 + Math.PI;
 
-			var object = new THREE.Object3D();
+			let object = new THREE.Object3D();
 
 			object.position.x = 900 * Math.sin( phi );
 			object.position.y = - ( i * 8 ) + 450;
@@ -265,10 +264,10 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
     TWEEN.removeAll();
 
-    for ( var i = 0; i < objects.length; i ++ ) {
+    for ( let i = 0; i < objects.length; i ++ ) {
 
-      var object = objects[ i ];
-      var target = targets[ i ];
+      let object = objects[ i ];
+      let target = targets[ i ];
 
       new TWEEN.Tween( object.position )
         .to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
