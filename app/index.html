@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JSinSA Code-Off :: Tweet Visualiser</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" href="css/flatly/bootstrap.css" xmlns="http://www.w3.org/1999/html"/>
+    <link rel="stylesheet" href="css/style.css" xmlns="http://www.w3.org/1999/html"/>
+
+    <script src="js/loader.js"></script>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script src="js/tween.min.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/CSS3DRenderer.js"></script>
+
+		<nav class="navbar navbar-primary navbar-fixed-top">
+		  <div class="container-fluid">
+		    <div class="row" style="vertical-align: middle">
+						<div class="col-sm-11">
+							<h1 align="center">#jsinsa 2016</h1>
+						  <h5 align="center">@daleattree</h5>
+						</div>
+						<div class="col-sm-1" style="margin-top: 10px; margin-right: 0px; text-align: right;"><span id="refresh" class="btn btn-info">Refresh</span></div>
+				</div>
+		  </div>
+		</nav>
+
+
+    <canvas id="loader"></canvas>
+		<div id="container"></div>
+		<div id="tweet"></div>
+
+    <script>
+    // You can also require other files to run in this process
+    require('./../helix.js')
+
+		$('#refresh').hide();
+
+    document.addEventListener("DOMContentLoaded", function() {
+      loadBirdie();
+    });
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#tweet {
+  position: absolute;
+  width: 60%;
+  text-align: center;
+  bottom: 0px;
+  margin-left: 20%;
+}
+
+.profile_pic{
+  border-radius: 10px;
+  border: solid 1px white;
+}
+
+#loader {
+	position: absolute; /* needs to be absolute as to get across the window, parent should be body or an element that is full width, also set parent overflow-x to hidden */
+	top: 30%; /* set this to where you want the element to be */
+
+	/* animate item across the window with a keyframe animation */
+	animation-name: flappy;
+	animation-fill-mode: both;
+	animation-duration: 3s; /* this is how long the animation takes, changing this will change the speed */
+	animation-iteration-count: infinite;
+}
+
+@keyframes flappy {
+
+	0% {
+		left: 0%;
+	}
+
+	100% {
+		left: 90%;
+	}
+}

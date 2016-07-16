@@ -1,0 +1,42 @@
+{
+  "name": "daleattree-jsinsa-tweet-visualiser",
+  "version": "1.0.0",
+  "description": "A helix display of tweets related to the JSinSA conference",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "dist": "npm run dist:osx && npm run dist:win32 && npm run dist:win64",
+    "dist:osx": "build --platform darwin",
+    "dist:win32": "build --platform win32 --arch ia32",
+    "dist:win64": "build --platform win32 --arch x64"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daleattree/Code-Off-Tweet-Visualiser.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/daleattree/Code-Off-Tweet-Visualiser/issues"
+  },
+  "homepage": "https://github.com/daleattree/Code-Off-Tweet-Visualiser#readme",
+  "dependencies" : {
+      "twitter-node-client" : "*",
+      "body-parser": "^1.12.2",
+      "express": "^4.12.3",
+      "moment": "*",
+      "jquery": "*",
+      "twitter": "*"
+
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0"
+  }
+}
