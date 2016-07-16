@@ -4,12 +4,14 @@
   "description": "A helix display of tweets related to the JSinSA conference",
   "main": "main.js",
   "scripts": {
-    "postinstall": "install-app-deps",
+    "npm-install": "npm install",
     "start": "electron .",
     "dist": "npm run dist:osx && npm run dist:win32 && npm run dist:win64",
     "dist:osx": "build --platform darwin",
     "dist:win32": "build --platform win32 --arch ia32",
-    "dist:win64": "build --platform win32 --arch x64"
+    "dist:win64": "build --platform win32 --arch x64",
+    "update-npm": "node ./node_modules/npm-check-updates/bin/npm-check-updates --upgradeAll",
+    "update": "npm run update-npm"
   },
   "repository": {
     "type": "git",
