@@ -135,11 +135,11 @@ function twitterEngine(twitterApi, config, myEmitter){
    };
 
    function loadMentions(){
-     twitter.getSearch({'q':'@jsinsa:) since:2016-07-01', 'count': 100}, error, parseMentions);
+     twitter.getSearch({'q':'@PHPSouthAfrica:) since:2016-09-01', 'count': 100}, error, parseMentions);
    };
 
    function loadData(){
-     twitter.getSearch({'q':'#jsinsa:) since:2016-07-01', 'count': 100}, error, parseHashtags);
+     twitter.getSearch({'q':'#PHPJhb16:) since:2016-09-01', 'count': 100}, error, parseHashtags);
    }
 
    function getTweet(id){
@@ -183,6 +183,7 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
   $('#loader').hide();
   $('#refresh').show();
+  $('#container').html('');
 
   init();
   animate();
@@ -318,9 +319,9 @@ myEmitter.on('dataLoaded', (hashtags, mentions) => {
 
 });
 
-// setInterval(function(tweetEngine){
-//   tweetEngine.loadData();
-// }, 12000, tweetEngine);
+setInterval(function(tweetEngine){
+  tweetEngine.loadData();
+}, 30000, tweetEngine);
 
 $("#refresh").on( "click", function() {
   $('#refresh').hide();

@@ -1,7 +1,7 @@
 {
-  "name": "daleattree-jsinsa-tweet-visualiser",
+  "name": "daleattree-phpsa-tweet-visualiser",
   "version": "1.0.0",
-  "description": "A helix display of tweets related to the JSinSA conference",
+  "description": "A helix display of tweets related to the PHPSA conference",
   "main": "main.js",
   "scripts": {
     "npm-install": "npm install",
